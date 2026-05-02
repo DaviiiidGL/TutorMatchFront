@@ -10,7 +10,6 @@ body {
 }
 
 @layer components {
-
   /* ─── Layout principal ─── */
 
   .auth-page {
@@ -24,11 +23,11 @@ body {
   /* ─── Panel de marca (izquierda, solo desktop) ─── */
 
   .auth-brand-panel {
-  @apply hidden lg:flex flex-col justify-between bg-[#141414] p-10 text-white border-r border-white/5;
+    @apply hidden lg:flex flex-col justify-between bg-[#141414] p-10 text-white border-r border-white/5;
   }
 
   .auth-brand-badge {
-  @apply inline-flex items-center gap-2 rounded-full border border-[#ff6a00]/60 bg-white/5 px-4 py-2 text-sm font-medium text-white/80;
+    @apply inline-flex items-center gap-2 rounded-full border border-[#ff6a00]/60 bg-white/5 px-4 py-2 text-sm font-medium text-white/80;
   }
 
   .auth-brand-title {
@@ -52,38 +51,38 @@ body {
   }
 
   .auth-brand-card {
-  @apply rounded-2xl border border-[#ff6a00]/40 bg-white/5 p-5;
+    @apply rounded-2xl border border-[#ff6a00]/40 bg-white/5 p-5;
   }
 
   /* ─── Panel del formulario (derecha) ─── */
 
   .auth-form-wrapper {
-  @apply flex items-center justify-center px-5 py-10 sm:px-8 bg-[#0f0f0f] relative overflow-hidden min-h-screen;
+    @apply flex items-center justify-center px-5 py-10 sm:px-8 bg-[#0f0f0f] relative overflow-hidden min-h-screen;
   }
 
-.auth-formulas-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 1.2rem 2rem;
-  padding: 2rem;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
+  .auth-formulas-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 1.2rem 2rem;
+    padding: 2rem;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
 
-.auth-formula-item {
-  color: rgba(255, 255, 255, 0.045);
-  font-family: monospace;
-  font-size: 0.8rem;
-  white-space: nowrap;
-}
+  .auth-formula-item {
+    color: rgba(255, 255, 255, 0.045);
+    font-family: monospace;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
 
-.auth-form-wrapper > .auth-form-panel {
-  @apply relative z-10;
-}
+  .auth-form-wrapper > .auth-form-panel {
+    @apply relative z-10;
+  }
 
   .auth-form-panel {
     @apply w-full max-w-md rounded-2xl bg-[#1a1a1a] p-6 shadow-lg sm:p-8 border border-white/5;
@@ -184,5 +183,210 @@ body {
 
   .auth-switch-button {
     @apply font-semibold text-[#ff6a00] hover:underline;
+  }
+
+  /* ─── Página de tutores ─── */
+
+  .tutors-page {
+    @apply min-h-screen bg-[#0f0f0f] px-4 py-8 text-white;
+  }
+
+  .tutors-page__container {
+    @apply mx-auto max-w-7xl;
+  }
+
+  .tutors-page__header {
+    @apply mb-6;
+  }
+
+  .tutors-page__title {
+    @apply text-3xl font-bold tracking-tight text-white;
+  }
+
+  .tutors-page__subtitle {
+    @apply mt-1 text-sm text-white/45 sm:text-base;
+  }
+
+  /* ─── Barra de filtros horizontal ─── */
+
+  .filters-panel {
+    @apply rounded-2xl border border-white/5 bg-[#161616] px-4 py-4 md:px-5 md:py-4;
+  }
+
+  .filters-panel__top {
+    @apply mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between;
+  }
+
+  .filters-panel__summary {
+    @apply flex flex-wrap items-center gap-3;
+  }
+
+  .filters-panel__title {
+    @apply text-sm font-semibold uppercase tracking-[0.2em] text-white/50;
+  }
+
+  .filters-panel__results {
+    @apply rounded-full border border-[#ff6a00]/30 bg-[#ff6a00]/10 px-3 py-1 text-xs font-medium text-[#ff6a00];
+  }
+
+  .filters-grid {
+    @apply grid gap-3;
+  }
+
+  .filters-grid--compact {
+    @apply grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.4fr_1fr_1fr_1fr_1.1fr];
+  }
+
+  .filter-field {
+    @apply min-w-0;
+  }
+
+  .filter-field--search {
+    @apply xl:min-w-[260px];
+  }
+
+  .filter-field--price-group {
+    @apply grid grid-cols-2 gap-3;
+  }
+
+  .filter-label {
+    @apply mb-1 block text-xs font-medium uppercase tracking-wide text-white/45;
+  }
+
+  .filter-input {
+    @apply h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white
+           outline-none transition placeholder:text-white/25
+           focus:border-[#ff6a00] focus:ring-2 focus:ring-[#ff6a00]/20;
+  }
+
+  .filter-actions {
+    @apply mt-4 flex justify-end;
+  }
+
+  .filter-clear-button {
+    @apply inline-flex h-11 items-center justify-center rounded-xl border border-white/10
+           px-4 text-sm font-medium text-white/70 transition
+           hover:border-[#ff6a00]/40 hover:text-white;
+  }
+
+  /* ─── Lista de tutores ─── */
+
+  .tutors-list {
+    @apply mt-4 space-y-3;
+  }
+
+  .tutors-list__header {
+    @apply mt-6 hidden grid-cols-[88px_1fr_auto] gap-4 border-b border-white/5 pb-2
+           text-xs font-semibold uppercase tracking-[0.2em] text-white/35
+           md:grid md:items-center;
+  }
+
+  .tutor-card {
+    @apply grid rounded-2xl border border-white/5 bg-[#161616] p-4 transition
+           hover:border-[#ff6a00]/25 hover:bg-[#1b1b1b]
+           md:grid-cols-[88px_1fr_auto] md:items-center md:gap-4;
+  }
+
+  .tutor-card__image {
+    @apply mb-3 h-20 w-20 rounded-xl object-cover md:mb-0;
+  }
+
+  .tutor-card__content {
+    @apply w-full;
+  }
+
+  .tutor-card__top {
+    @apply flex flex-wrap items-center gap-2;
+  }
+
+  .tutor-card__name {
+    @apply text-base font-semibold text-white;
+  }
+
+  .tutor-card__mode-badge {
+    @apply rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide;
+  }
+
+  .tutor-card__mode-badge--online {
+    @apply border-sky-400/30 bg-sky-400/10 text-sky-300;
+  }
+
+  .tutor-card__mode-badge--in-person {
+    @apply border-amber-400/30 bg-amber-400/10 text-amber-300;
+  }
+
+  .tutor-card__mode-badge--both {
+    @apply border-violet-400/30 bg-violet-400/10 text-violet-300;
+  }
+
+  .tutor-card__subjects {
+    @apply mt-2 flex flex-wrap gap-2;
+  }
+
+  .tutor-card__subject-tag {
+    @apply rounded-lg bg-white/5 px-2.5 py-1 text-xs font-medium text-[#ffb37a];
+  }
+
+  .tutor-card__description {
+    @apply mt-2 text-sm leading-relaxed text-white/65;
+  }
+
+  .tutor-card__meta {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .tutor-card__meta-item {
+    @apply flex items-center gap-1 rounded-lg bg-white/5 px-2.5 py-1 text-xs;
+  }
+
+  .tutor-card__meta-item--rating-high {
+    @apply text-emerald-300;
+  }
+
+  .tutor-card__meta-item--rating-medium {
+    @apply text-yellow-300;
+  }
+
+  .tutor-card__meta-item--rating-low {
+    @apply text-orange-300;
+  }
+
+  .tutor-card__meta-item--price {
+    @apply font-semibold text-white;
+  }
+
+  .tutor-card__schedule {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .tutor-card__schedule-tag {
+    @apply rounded-lg border border-white/10 bg-[#111111] px-2.5 py-1 text-xs text-white/55;
+  }
+
+  .tutor-card__action {
+    @apply mt-4 flex md:mt-0 md:justify-end;
+  }
+
+  .tutor-card__button {
+    @apply rounded-xl bg-[#ff6a00] px-5 py-2.5 text-sm font-semibold text-white
+           transition hover:bg-[#e85f00];
+  }
+
+  /* ─── Estados ─── */
+
+  .status-box {
+    @apply rounded-2xl border p-6 text-center;
+  }
+
+  .status-box--error {
+    @apply border-red-500/20 bg-red-500/10 text-red-400;
+  }
+
+  .status-box--empty {
+    @apply border-white/5 bg-[#161616] p-8;
+  }
+
+  .loading-card {
+    @apply h-32 animate-pulse rounded-2xl border border-white/5 bg-[#1a1a1a];
   }
 }

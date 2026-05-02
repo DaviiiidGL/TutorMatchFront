@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "name": "Laura Gómez",
+    "description": "Tutorías de álgebra, cálculo y física básica para primeros semestres.",
+    "subjects": ["Matemáticas", "Física"],
+    "pricePerHour": 30000,
+    "modalidad": "online",
+    "rating": 4.8,
+    "disponibility": [
+      { "day": "Lunes", "startTime": "08:00", "endTime": "10:00" },
+      { "day": "Miércoles", "startTime": "14:00", "endTime": "16:00" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Carlos Ruiz",
+    "description": "Apoyo en JavaScript, Python, lógica y matemáticas discretas.",
+    "subjects": ["Programación", "Matemáticas"],
+    "pricePerHour": 35000,
+    "modalidad": "online",
+    "rating": 4.5,
+    "disponibility": [
+      { "day": "Martes", "startTime": "14:00", "endTime": "18:00" },
+      { "day": "Jueves", "startTime": "09:00", "endTime": "12:00" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Valentina Torres",
+    "description": "Mecánica, termodinámica y química general con enfoque práctico.",
+    "subjects": ["Física", "Química"],
+    "pricePerHour": 28000,
+    "modalidad": "in-person",
+    "rating": 4.2,
+    "disponibility": [
+      { "day": "Lunes", "startTime": "10:00", "endTime": "12:00" },
+      { "day": "Viernes", "startTime": "15:00", "endTime": "18:00" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Sebastián López",
+    "description": "Clases para ciencias básicas, química orgánica y biología celular.",
+    "subjects": ["Química", "Biología"],
+    "pricePerHour": 25000,
+    "modalidad": "both",
+    "rating": 3.9,
+    "disponibility": [
+      { "day": "Miércoles", "startTime": "07:00", "endTime": "10:00" },
+      { "day": "Sábado", "startTime": "09:00", "endTime": "11:00" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Manuela Castro",
+    "description": "Preparación para exámenes internacionales y refuerzo en comunicación escrita.",
+    "subjects": ["Inglés", "Español"],
+    "pricePerHour": 40000,
+    "modalidad": "online",
+    "rating": 4.9,
+    "disponibility": [
+      { "day": "Martes", "startTime": "18:00", "endTime": "21:00" },
+      { "day": "Jueves", "startTime": "18:00", "endTime": "20:00" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Andrés Herrera",
+    "description": "Estadística, cálculo diferencial e integral para ingeniería y economía.",
+    "subjects": ["Matemáticas", "Estadística"],
+    "pricePerHour": 32000,
+    "modalidad": "in-person",
+    "rating": 4.1,
+    "disponibility": [
+      { "day": "Lunes", "startTime": "15:00", "endTime": "19:00" },
+      { "day": "Jueves", "startTime": "08:00", "endTime": "10:00" }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Isabella Moreno",
+    "description": "Introducción a la programación, Java y bases de datos relacionales.",
+    "subjects": ["Programación", "Bases de Datos"],
+    "pricePerHour": 27000,
+    "modalidad": "online",
+    "rating": 4.3,
+    "disponibility": [
+      { "day": "Miércoles", "startTime": "09:00", "endTime": "12:00" },
+      { "day": "Viernes", "startTime": "10:00", "endTime": "13:00" }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Felipe Ramírez",
+    "description": "Física moderna, simulaciones y apoyo en proyectos con Python.",
+    "subjects": ["Física", "Programación"],
+    "pricePerHour": 45000,
+    "modalidad": "both",
+    "rating": 4.7,
+    "disponibility": [
+      { "day": "Martes", "startTime": "16:00", "endTime": "20:00" },
+      { "day": "Sábado", "startTime": "08:00", "endTime": "11:00" }
+    ]
+  }
+]

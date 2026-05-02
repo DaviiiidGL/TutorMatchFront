@@ -33,3 +33,29 @@ export interface FormErrors {
     email?: string;
     password?: string;
 }
+
+export interface AvailabilitySlot {
+  day: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface Tutor {
+  id: number;
+  name: string;
+  description: string;
+  subjects: string[];
+  pricePerHour: number;
+  modalidad: "online" | "in-person" | "both";
+  rating: number;
+  disponibility: AvailabilitySlot[];
+}
+
+export interface TutorFilters {
+  search: string;
+  subject: string;
+  minRating: string;
+  hour: string;
+  minPrice: string;
+  maxPrice: string;
+}
