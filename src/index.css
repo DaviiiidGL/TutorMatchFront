@@ -31,7 +31,7 @@ body {
   }
 
   .auth-brand-title {
-    @apply mb-5 text-4xl font-bold leading-tight xl:text-5xl text-white;
+    @apply mb-5 text-4xl font-bold leading-tight text-white xl:text-5xl;
   }
 
   .auth-brand-description {
@@ -57,7 +57,7 @@ body {
   /* ─── Panel del formulario (derecha) ─── */
 
   .auth-form-wrapper {
-    @apply flex items-center justify-center px-5 py-10 sm:px-8 bg-[#0f0f0f] relative overflow-hidden min-h-screen;
+    @apply relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0f0f0f] px-5 py-10 sm:px-8;
   }
 
   .auth-formulas-bg {
@@ -85,7 +85,7 @@ body {
   }
 
   .auth-form-panel {
-    @apply w-full max-w-md rounded-2xl bg-[#1a1a1a] p-6 shadow-lg sm:p-8 border border-white/5;
+    @apply w-full max-w-md rounded-2xl border border-white/5 bg-[#1a1a1a] p-6 shadow-lg sm:p-8;
   }
 
   /* ─── Logo mobile ─── */
@@ -137,11 +137,11 @@ body {
   }
 
   .auth-feedback--success {
-    @apply bg-green-500/10 text-green-400 border border-green-500/20;
+    @apply border border-green-500/20 bg-green-500/10 text-green-400;
   }
 
   .auth-feedback--error {
-    @apply bg-red-500/10 text-red-400 border border-red-500/20;
+    @apply border border-red-500/20 bg-red-500/10 text-red-400;
   }
 
   /* ─── Formulario y campos ─── */
@@ -287,8 +287,12 @@ body {
            md:grid-cols-[88px_1fr_auto] md:items-center md:gap-4;
   }
 
-  .tutor-card__image {
-    @apply mb-3 h-20 w-20 rounded-xl object-cover md:mb-0;
+  .tutor-card__avatar-wrapper {
+    @apply mb-3 flex justify-start md:mb-0 md:justify-center;
+  }
+
+  .tutor-card__avatar {
+    @apply flex h-20 w-20 items-center justify-center rounded-xl bg-[#1d1d1d] text-3xl font-bold text-[#ff6a00];
   }
 
   .tutor-card__content {
@@ -388,5 +392,190 @@ body {
 
   .loading-card {
     @apply h-32 animate-pulse rounded-2xl border border-white/5 bg-[#1a1a1a];
+  }
+
+  /* ─── Perfil de tutor ─── */
+
+  .tutor-profile-page {
+    @apply min-h-screen bg-[#0f0f0f] px-4 py-8 text-white;
+  }
+
+  .tutor-profile-layout {
+    @apply mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-[320px_1fr];
+  }
+
+  .tutor-profile-sidebar {
+    @apply w-full;
+  }
+
+  .tutor-profile-summary-card {
+    @apply flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#161616] p-6;
+  }
+
+  .tutor-profile-avatar {
+    @apply flex h-44 w-44 items-center justify-center rounded-full border-4 border-[#ff6a00] bg-[#1d1d1d] text-5xl font-bold text-[#ff6a00];
+  }
+
+  .tutor-profile-avatar__text {
+    @apply select-none;
+  }
+
+  .tutor-profile-identity {
+    @apply flex flex-col gap-2;
+  }
+
+  .tutor-profile-identity__name {
+    @apply text-3xl font-bold text-white;
+  }
+
+  .tutor-profile-identity__mode {
+    @apply inline-flex w-fit rounded-full bg-[#ff6a00]/15 px-3 py-1 text-sm font-medium capitalize text-[#ff6a00];
+  }
+
+  .tutor-profile-summary-card__description {
+    @apply text-sm leading-7 text-white/65;
+  }
+
+  .tutor-profile-content {
+    @apply flex flex-col gap-4;
+  }
+
+  .tutor-profile-panel {
+    @apply rounded-2xl border border-white/5 bg-[#161616] p-6;
+  }
+
+  .tutor-profile-panel--highlight {
+    @apply border-[#ff6a00]/30;
+  }
+
+  .tutor-profile-panel__title {
+    @apply mb-4 text-sm font-semibold uppercase tracking-wide text-[#ff6a00];
+  }
+
+  .tutor-profile-subject-list {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .tutor-profile-subject-list__item {
+    @apply rounded-lg bg-white/5 px-3 py-1 text-sm text-slate-200;
+  }
+
+  .tutor-profile-rating {
+    @apply flex items-center gap-3;
+  }
+
+  .tutor-profile-rating__stars {
+    @apply text-xl tracking-wide text-yellow-400;
+  }
+
+  .tutor-profile-rating__value {
+    @apply text-sm font-medium text-slate-200;
+  }
+
+  .tutor-profile-availability-list {
+    @apply flex flex-col gap-3;
+  }
+
+  .tutor-profile-availability-list__item {
+    @apply flex flex-col gap-1 rounded-xl border border-white/10 bg-[#111111] px-4 py-3 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .tutor-profile-availability-list__day {
+    @apply text-sm font-semibold text-white;
+  }
+
+  .tutor-profile-availability-list__time {
+    @apply text-sm text-slate-300;
+  }
+
+  .tutor-profile-booking__price {
+    @apply mb-4 text-lg font-bold text-white;
+  }
+
+  .tutor-profile-booking__actions {
+    @apply flex flex-col gap-3 sm:flex-row;
+  }
+
+  .tutor-profile-booking__button {
+    @apply rounded-xl bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e65f00];
+  }
+
+  .tutor-profile-booking__secondary-button {
+    @apply rounded-xl border border-white/15 bg-transparent px-5 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/5;
+  }
+
+  .tutor-profile-state {
+    @apply mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center gap-4 text-center;
+  }
+
+  .tutor-profile-state__message {
+    @apply text-base text-slate-300;
+  }
+
+  .tutor-profile-state__button {
+    @apply rounded-xl bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e65f00];
+  }
+
+  /* ─── Booking page ─── */
+
+  .booking-page {
+    @apply min-h-screen bg-[#0f0f0f] px-4 py-8 text-white;
+  }
+
+  .booking-page__container {
+    @apply mx-auto max-w-3xl;
+  }
+
+  .booking-card {
+    @apply rounded-2xl border border-white/5 bg-[#161616] p-6;
+  }
+
+  .booking-card__title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .booking-card__subtitle {
+    @apply mt-1 text-sm text-white/45;
+  }
+
+  .booking-form {
+    @apply mt-6 space-y-4;
+  }
+
+  .booking-form__group {
+    @apply w-full;
+  }
+
+  .booking-form__label {
+    @apply mb-1 block text-sm font-medium text-white/60;
+  }
+
+  .booking-form__input {
+    @apply h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white
+           outline-none transition placeholder:text-white/25
+           focus:border-[#ff6a00] focus:ring-2 focus:ring-[#ff6a00]/20;
+  }
+
+  .booking-form__textarea {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+           outline-none transition placeholder:text-white/25
+           focus:border-[#ff6a00] focus:ring-2 focus:ring-[#ff6a00]/20;
+  }
+
+  .booking-form__button {
+    @apply w-full rounded-xl bg-[#ff6a00] px-4 py-3 text-sm font-semibold text-white
+           transition hover:bg-[#e85f00];
+  }
+
+  .booking-form__feedback {
+    @apply rounded-xl px-4 py-3 text-sm;
+  }
+
+  .booking-form__feedback--success {
+    @apply border border-green-500/20 bg-green-500/10 text-green-400;
+  }
+
+  .booking-form__feedback--error {
+    @apply border border-red-500/20 bg-red-500/10 text-red-400;
   }
 }
