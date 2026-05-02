@@ -33,7 +33,7 @@ function AuthPage(){
                 setMessage(res.message);
                 setMessageType("success");
             }
-            navigate("/tutores");
+            navigate("/tutors");
         } catch (error){
             setMessage(error instanceof Error ? error.message : "Perdoon, algo salió mal :(");
             setMessageType("error");
