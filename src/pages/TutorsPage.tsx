@@ -3,6 +3,7 @@ import SearchFilters from "../components/SearchFilters";
 import TutorCard from "../components/TutorCard";
 import { getTutors } from "../api/tutor";
 import type { Tutor, TutorFilters } from "../types";
+import { useNavigate } from 'react-router-dom';
 
 const EMPTY_FILTERS: TutorFilters = {
   search: "",
@@ -18,6 +19,7 @@ function TutorsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [filters, setFilters] = useState<TutorFilters>(EMPTY_FILTERS);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadTutors = async () => {
@@ -99,6 +101,23 @@ function TutorsPage() {
             precios.
           </p>
         </header>
+        <div className="flex gap-3 w-full sm:w-auto">
+          {/* Botón del Chat */}
+          <button 
+            onClick={() => navigate('/mensajes')}
+            className="tutor-card__button mb-8"
+          >
+            💬 Mensajes
+          </button>
+
+          {/* Botón del Calendario que ya tenías */}
+          <button 
+            onClick={() => navigate('/calendario')}
+            className="tutor-card__button mb-8"
+          >
+            📅 Mi Calendario
+          </button>
+        </div>
 
         <SearchFilters
           filters={filters}
