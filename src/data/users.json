@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "David Giraldo",
+        "email": "david@tutormatch.com",
+        "password": "123456",
+        "role": "student"
+    },
+    {
+        "id": 2,
+        "name": "Sofia Soto",
+        "email": "sofia@tutormatch.com",
+        "password": "123456",
+        "role": "tutor"
+    },
+    {
+        "id": 3,
+        "name": "Manuela",
+        "email": "manuela@tutormatch.com",
+        "password": "123456",
+        "role": "both"
+    }
+]

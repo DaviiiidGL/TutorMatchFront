@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #0f0f0f;
+  font-family: Arial, sans-serif;
+}
+
+@layer components {
+
+  /* ─── Layout principal ─── */
+
+  .auth-page {
+    @apply min-h-screen bg-[#0f0f0f];
+  }
+
+  .auth-layout {
+    @apply grid min-h-screen lg:grid-cols-2;
+  }
+
+  /* ─── Panel de marca (izquierda, solo desktop) ─── */
+
+  .auth-brand-panel {
+  @apply hidden lg:flex flex-col justify-between bg-[#141414] p-10 text-white border-r border-white/5;
+  }
+
+  .auth-brand-badge {
+  @apply inline-flex items-center gap-2 rounded-full border border-[#ff6a00]/60 bg-white/5 px-4 py-2 text-sm font-medium text-white/80;
+  }
+
+  .auth-brand-title {
+    @apply mb-5 text-4xl font-bold leading-tight xl:text-5xl text-white;
+  }
+
+  .auth-brand-description {
+    @apply mb-8 text-lg text-white/50;
+  }
+
+  .auth-benefits-list {
+    @apply space-y-3 text-base;
+  }
+
+  .auth-benefit-item {
+    @apply flex items-start gap-3 text-white/60;
+  }
+
+  .auth-benefit-dot {
+    @apply mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#ff6a00];
+  }
+
+  .auth-brand-card {
+  @apply rounded-2xl border border-[#ff6a00]/40 bg-white/5 p-5;
+  }
+
+  /* ─── Panel del formulario (derecha) ─── */
+
+  .auth-form-wrapper {
+  @apply flex items-center justify-center px-5 py-10 sm:px-8 bg-[#0f0f0f] relative overflow-hidden min-h-screen;
+  }
+
+.auth-formulas-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 1.2rem 2rem;
+  padding: 2rem;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.auth-formula-item {
+  color: rgba(255, 255, 255, 0.045);
+  font-family: monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.auth-form-wrapper > .auth-form-panel {
+  @apply relative z-10;
+}
+
+  .auth-form-panel {
+    @apply w-full max-w-md rounded-2xl bg-[#1a1a1a] p-6 shadow-lg sm:p-8 border border-white/5;
+  }
+
+  /* ─── Logo mobile ─── */
+
+  .auth-mobile-brand {
+    @apply mb-8 text-center lg:hidden;
+  }
+
+  .auth-mobile-title {
+    @apply text-3xl font-bold text-[#ff6a00];
+  }
+
+  .auth-mobile-description {
+    @apply mt-1 text-sm text-white/40;
+  }
+
+  /* ─── Tabs login / registro ─── */
+
+  .auth-tabs {
+    @apply mb-6 flex rounded-xl bg-white/5 p-1;
+  }
+
+  .auth-tab-button {
+    @apply w-1/2 rounded-xl py-2 text-sm font-semibold text-white/40 transition hover:text-white/70;
+  }
+
+  .auth-tab-button--active {
+    @apply bg-[#ff6a00] text-white shadow-sm hover:text-white;
+  }
+
+  /* ─── Encabezado del formulario ─── */
+
+  .auth-header {
+    @apply mb-5;
+  }
+
+  .auth-heading {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .auth-subheading {
+    @apply mt-1 text-sm text-white/40;
+  }
+
+  /* ─── Feedback de éxito / error ─── */
+
+  .auth-feedback {
+    @apply mb-4 rounded-xl px-4 py-3 text-sm;
+  }
+
+  .auth-feedback--success {
+    @apply bg-green-500/10 text-green-400 border border-green-500/20;
+  }
+
+  .auth-feedback--error {
+    @apply bg-red-500/10 text-red-400 border border-red-500/20;
+  }
+
+  /* ─── Formulario y campos ─── */
+
+  .auth-form {
+    @apply space-y-4;
+  }
+
+  .auth-form-group {
+    @apply w-full;
+  }
+
+  .auth-label {
+    @apply mb-1 block text-sm font-medium text-white/60;
+  }
+
+  .auth-input {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white
+           placeholder:text-white/20 outline-none transition
+           focus:border-[#ff6a00] focus:ring-2 focus:ring-[#ff6a00]/20;
+  }
+
+  .auth-error-text {
+    @apply mt-1 text-xs text-red-400;
+  }
+
+  /* ─── Botón de envío ─── */
+
+  .auth-submit-button {
+    @apply w-full rounded-xl bg-[#ff6a00] px-4 py-3 text-sm font-semibold text-white
+           transition hover:bg-[#e85f00] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* ─── Link para cambiar de modo ─── */
+
+  .auth-switch-text {
+    @apply mt-5 text-center text-sm text-white/40;
+  }
+
+  .auth-switch-button {
+    @apply font-semibold text-[#ff6a00] hover:underline;
+  }
+}
