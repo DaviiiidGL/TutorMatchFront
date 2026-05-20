@@ -1,10 +1,10 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { loginUser, registerUser } from "../api/auth";
 import type { AuthMode, LoginFormData, RegisterFormData } from "../types";
 
-function AuthPage(){
+function AuthPage() {
     const navigate = useNavigate();
 
     const [mode, setMode] = useState<AuthMode>("login");
@@ -16,32 +16,48 @@ function AuthPage(){
         setMode(newMode);
         setMessage("");
         setMessageType("");
-    }
+    };
 
-    const handleSubmit = async(data: LoginFormData | RegisterFormData): Promise<void> => {
+    const handleSubmit = async (data: LoginFormData | RegisterFormData): Promise<void> => {
         setLoading(true);
         setMessage("");
         setMessageType("");
 
         try {
-            if(mode === "login"){
+            if (mode === "login") {
                 const res = await loginUser(data as LoginFormData);
                 setMessage(res.message);
                 setMessageType("success");
+
+                // Redirigir según el rol del usuario
+                const role = res.user.role;
+                if (role === "tutor" || role === "both") {
+                    navigate("/tutor/setup");
+                } else {
+                    navigate("/tutors");
+                }
+
             } else {
                 const res = await registerUser(data as RegisterFormData);
                 setMessage(res.message);
                 setMessageType("success");
+
+                // En registro también redirigir según el rol elegido
+                const role = (data as RegisterFormData).role;
+                if (role === "tutor" || role === "both") {
+                    navigate("/tutor/setup");
+                } else {
+                    navigate("/tutors");
+                }
             }
-            navigate("/tutors");
-        } catch (error){
+
+        } catch (error) {
             setMessage(error instanceof Error ? error.message : "Perdoon, algo salió mal :(");
             setMessageType("error");
         } finally {
             setLoading(false);
         }
-
-        }
+    };
 
     return (
         <main className="auth-page">
@@ -91,9 +107,10 @@ function AuthPage(){
                 <div className="auth-form-wrapper">
                     <div className="auth-formulas-bg" aria-hidden="true">
                         {"∫f(x)dx  E=mc²  F=ma  PV=nRT  ΔG=ΔH-TΔS  λ=h/mv  σ=F/A  ∇²ψ  a²+b²=c²  v=λf  pH=-log[H⁺]  E=hf  F=kq₁q₂/r²  KE=½mv²  ΔS≥0  ∑xᵢ/n  lim(x→0)  d/dx[eˣ]=eˣ  ∮E·dA=Q/ε₀  Δx·Δp≥ℏ/2  c=3×10⁸  R=8.314  sin²θ+cos²θ=1  eⁱᵖ+1=0  ∇×B=μ₀J  P=IV  W=Fd·cosθ  Q=mcΔT  n₁sinθ₁=n₂sinθ₂  T=2π√(L/g)  Fg=Gm₁m₂/r²  v²=v₀²+2aΔx  x=x₀+v₀t+½at²  ΔU=Q-W  S=kB·ln(Ω)  f=1/T  Ep=mgh  ρ=m/V  P=F/A  I=Q/t  V=IR  Z=√(R²+X²)  Φ=BA·cosθ  τ=rF·sinθ  L=Iω  p=mv  J=Δp  η=W/Q  COP=QL/W  ε=−dΦ/dt  XL=ωL  XC=1/ωC  ω=2πf  β=10log(I/I₀)  d=vt  a=Δv/Δt  θ=ωt+½αt²  τ=Iα  ∑F=ma  ∑τ=0  KE=½Iω²  U=½kx²  F=-kx  T=2π√(m/k)  vsound=331+0.6T  λ=v/f  I=P/A  n=c/v  m=-dᵢ/d₀  1/f=1/dₒ+1/dᵢ  ΔE=hf  rn=n²a₀  En=-13.6/n² eV  ΔE=Ef-Ei  N=N₀e^(-λt)  t½=ln2/λ  E=mc²  Δm·c²  Q-value  BE/A  χ²=∑(O-E)²/E  z=(x-μ)/σ  P(A∩B)=P(A)·P(B)  E[X]=∑xP(x)  σ²=E[X²]-μ²".split("  ").map((formula, i) => (
-                        <span key={i} className="auth-formula-item">{formula}</span>
+                            <span key={i} className="auth-formula-item">{formula}</span>
                         ))}
                     </div>
+
                     <div className="auth-form-panel">
 
                         {/* Logo visible solo en mobile */}

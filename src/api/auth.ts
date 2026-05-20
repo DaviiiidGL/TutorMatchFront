@@ -1,39 +1,55 @@
-import usersData from '../data/users.json';
-import type { User, LoginFormData, RegisterFormData, AuthResponse } from '../types';
+// src/api/auth.ts
 
-const users = usersData as User[];
+import { api } from './client';
+import type { LoginFormData, RegisterFormData, AuthResponse } from '../types';
 
 export async function loginUser(formData: LoginFormData): Promise<AuthResponse> {
-    const foundUser = users.find(user => user.email === formData.email && user.password === formData.password);
+  const data = await api.post<{ token: string }>('/auth/login', {
+    email: formData.email,
+    password: formData.password
+  });
 
-    if(!foundUser){
-        throw new Error("Verifica el Correo y la Contraseña");
+  // Guardar el token para las demás peticiones
+  localStorage.setItem('token', data.token);
+
+  // Decodificar el payload del JWT para sacar email y rol
+  const payload = JSON.parse(atob(data.token.split('.')[1]));
+
+  return {
+    success: true,
+    message: `Bienvenid@, ${payload.email}`,
+    user: {
+      id: payload.nameid,       
+      email: payload.email,
+      name: payload.email,      
+      role: payload.role ?? ''
     }
-
-    const { password, ...safeUser } = foundUser;
-
-    return {
-        success: true,
-        message: `Bienvenid@, ${foundUser.name}`,
-        user: safeUser
-    };
+  };
 }
 
 export async function registerUser(formData: RegisterFormData): Promise<AuthResponse> {
-    const existingUser = users.some((user) => user.email === formData.email);
+  const data = await api.post<{ message: string }>('/auth/register', {
+    email: formData.email,
+    password: formData.password,
+    role: formData.role
+  });
 
-    if(existingUser){
-        throw new Error("El correo ya se encuentra registrado");
+  return {
+    success: true,
+    message: data.message,
+    user: {
+      id: 0,
+      email: formData.email,
+      name: formData.name,
+      role: formData.role
     }
+  };
+}
 
-    return {
-        success: true,
-        message: "Listo. Ya tienes acceso a TutorMatch con tu cuenta :)",
-        user: {
-            id: users.length + 1,
-            email: formData.email,
-            name: formData.name,
-            role: formData.role
-        },
-    };
+export function logoutUser(): void {
+  localStorage.removeItem('token');
+}
+
+export function getStoredToken(): string | null {
+  return localStorage.getItem('token');
 }
