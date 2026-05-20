@@ -158,7 +158,7 @@ function TutorDetailPage() {
             <div className="tutor-profile-booking__actions">
               <button
                 type="button"
-                onClick={bookingNavigationHandler}
+                onClick={() => navigate(`/reserva/${selectedTutor.id}`)}
                 className="tutor-profile-booking__button"
               >
                 Reserva la sesión
