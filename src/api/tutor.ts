@@ -1,15 +1,10 @@
-import type { Tutor } from "../types";
-import tutorsData from "../data/tutors.json";
+import { api } from './client';
+import type { Tutor } from '../types';
 
-export const getTutors = async (): Promise<Tutor[]> => {
-    return new Promise((resolve) => {
-        resolve(tutorsData as Tutor[]);
-    });
-};
+export async function getTutors(): Promise<Tutor[]> {
+  return api.get<Tutor[]>('/tutors');
+}
 
-export const getTutorById = async (id: number): Promise<Tutor | null> => {
-    return new Promise((resolve) => {
-        const tutor = (tutorsData as Tutor[]).find((t) => t.id === id);
-        resolve(tutor || null);
-    });
-};
+export async function getTutorById(id: number): Promise<Tutor> {
+  return api.get<Tutor>(`/tutors/${id}`);
+}
