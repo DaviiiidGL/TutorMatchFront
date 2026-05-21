@@ -2,6 +2,10 @@ export type AuthMode = "login" | "register";
 
 export type UserRole = "student" | "tutor" | "both";
 
+export type SubjectOption = "Mathematics" | "Physics" | "Chemistry" | "Biology"| "Programming"| "Algorithms"| "Databases"| "English"| "History"| "Economics";
+
+export type ModalityOption = "online" | "in-person" | "both";
+
 export interface User {
     id: number;
     name: string;
@@ -58,4 +62,19 @@ export interface TutorFilters {
   hour: string;
   minPrice: string;
   maxPrice: string;
+}
+
+export interface TutorProfileFormData {
+  bio: string;
+  hourlyRate: number | "";
+  modality: ModalityOption;
+  subjects: SubjectOption[];
+  availabilities: AvailabilitySlot[];
+}
+
+export interface TutorProfileFormErrors {
+  bio?: string;
+  hourlyRate?: string;
+  subjects?: string;
+  availabilities?: string;
 }
