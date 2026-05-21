@@ -7,6 +7,9 @@ import CalendarPage from './pages/CalendarPage';
 import ChatPage from './pages/ChatPage';
 import TutorProfileSetupPage from './pages/TutorProfileSetupPage';
 import TutorOffersPage from './pages/TutorOffersPage';
+import TutorBookingsPage from './pages/TutorBookingsPage';
+import BookingStatusPage from './pages/BookingStatusPage';
+import TutorAvailabilityPage from './pages/TutorAvailabilityPage';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/mensajes" element={<ChatPage />} />
         <Route path="/tutor/setup" element={<TutorProfileSetupPage />} />
         <Route path="/tutor/ofertas" element={<TutorOffersPage />} />
+        <Route path="/tutor/reservas" element={<TutorBookingsPage />} />
+        <Route path="/tutor/disponibilidad" element={<TutorAvailabilityPage />} />
+        <Route path="/mis-reservas/:bookingId" element={<BookingStatusPage />} />
       </Routes>
     </BrowserRouter>
   );
