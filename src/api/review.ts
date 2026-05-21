@@ -1,10 +1,10 @@
 import { api } from './client';
 
 export interface Review {
-  id: number;
-  bookingId: number;
-  tutorId: number;
-  studentId: number;
+  id: string;            // Guid → string
+  bookingId: string;     // Guid → string
+  tutorId: string;       // string (IdentityUser.Id)
+  studentId: string;     // string (IdentityUser.Id)
   studentName: string;
   rating: number;
   comment: string;
@@ -12,8 +12,8 @@ export interface Review {
 }
 
 export interface CreateReviewDTO {
-  bookingId: number;
-  tutorId: number;
+  bookingId: string;     // Guid → string
+  tutorId: string;       // string (IdentityUser.Id)
   rating: number;
   comment: string;
 }
@@ -22,7 +22,7 @@ export async function submitReview(dto: CreateReviewDTO): Promise<Review> {
   return api.post<Review>('/reviews', dto);
 }
 
-export async function getMyReviewForBooking(bookingId: number): Promise<Review | null> {
+export async function getMyReviewForBooking(bookingId: string): Promise<Review | null> {
   try {
     return await api.get<Review>(`/reviews/booking/${bookingId}`);
   } catch {
@@ -30,6 +30,6 @@ export async function getMyReviewForBooking(bookingId: number): Promise<Review |
   }
 }
 
-export async function getReviewsForTutor(tutorId: number): Promise<Review[]> {
+export async function getReviewsForTutor(tutorId: string): Promise<Review[]> {
   return api.get<Review[]>(`/reviews/tutor/${tutorId}`);
 }
