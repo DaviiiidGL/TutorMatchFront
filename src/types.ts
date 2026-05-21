@@ -2,6 +2,7 @@ export type AuthMode = "login" | "register";
 
 export type UserRole = "student" | "tutor" | "both";
 
+
 export interface User {
     id: number;
     name: string;
@@ -48,7 +49,12 @@ export interface Tutor {
   pricePerHour: number;
   modalidad: "online" | "in-person" | "both";
   rating: number;
+  reviewCount?: number;       // req 17
   disponibility: AvailabilitySlot[];
+  // ── REQ 18: penalización por cancelaciones ──────────────
+  penaltyScore?: number;      // 0 = sin penalización, >0 = penalizado
+  cancelCount?: number;       // total de cancelaciones para mostrar contexto
+  isHidden?: boolean;         // true = el back lo oculta; el front lo filtra también
 }
 
 export interface TutorFilters {
@@ -121,11 +127,12 @@ export interface TutorOfferFormErrors {
 // ─── Bookings / Reservas ───
 
 export type BookingStatus =
-  | "pending"
-  | "accepted"
-  | "rejected"
-  | "expired"
-  | "cancelled";
+  | 'pending'
+  | 'accepted'
+  | 'rejected'
+  | 'expired'
+  | 'cancelled'
+  | 'completed';  
 
 export interface Booking {
   id: number;

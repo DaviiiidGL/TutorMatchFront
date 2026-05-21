@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPendingBookings, acceptBooking, rejectBooking } from '../api/bookings';
+import { getPendingBookings, acceptBooking, rejectBooking } from '../api/booking';
 import { CountdownBadge } from '../components/CountdownBadge';
 import type { Booking, BookingStatus } from '../types';
 

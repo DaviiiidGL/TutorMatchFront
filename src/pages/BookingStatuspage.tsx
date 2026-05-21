@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMyBookings } from '../api/bookings';
+import { getMyBookings } from '../api/booking';
 import { CountdownBadge } from '../components/CountdownBadge';
+import { ReviewForm } from '../components/ReviewForm';  // ← NUEVO
 import type { Booking, BookingStatus } from '../types';
 
 const MODALITY_LABEL = {
@@ -50,6 +51,13 @@ const STATUS_CONFIG: Record<
     label: 'Cancelada',
     desc: 'Esta reserva fue cancelada.',
     color: 'border-white/10 bg-white/5 text-white/40',
+  },
+  // ── REQ 16 ──────────────────────────────────────────────
+  completed: {
+    emoji: '🎓',
+    label: '¡Sesión completada!',
+    desc: 'La sesión finalizó exitosamente. ¡Cuéntanos cómo te fue!',
+    color: 'border-blue-500/20 bg-blue-500/5 text-blue-400',
   },
 };
 
@@ -130,7 +138,7 @@ function TutorBookingsPage() {
           </div>
         </section>
 
-        {/* Countdown — solo si está pendiente */}
+        {/* Countdown */}
         {booking.status === 'pending' && (
           <section className="mb-5 rounded-2xl border border-white/5 bg-[#161616] p-5">
             <div className="flex items-center justify-between">
@@ -140,15 +148,12 @@ function TutorBookingsPage() {
                   Si no responde, la solicitud expira automáticamente
                 </p>
               </div>
-              <CountdownBadge
-                expiresAt={booking.expiresAt}
-                onExpired={handleExpired}
-              />
+              <CountdownBadge expiresAt={booking.expiresAt} onExpired={handleExpired} />
             </div>
           </section>
         )}
 
-        {/* Detalle de la sesión */}
+        {/* Detalle */}
         <section className="rounded-2xl border border-white/5 bg-[#161616] p-5">
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#ff6a00]">
             Detalle de la sesión
@@ -163,7 +168,7 @@ function TutorBookingsPage() {
           </div>
         </section>
 
-        {/* Acciones según estado */}
+        {/* Acciones por estado */}
         {(booking.status === 'rejected' || booking.status === 'expired') && (
           <button
             onClick={() => navigate('/tutors')}
@@ -180,6 +185,15 @@ function TutorBookingsPage() {
           >
             Ver en mi calendario →
           </button>
+        )}
+
+        {/* ── REQ 16: Formulario de review solo si la sesión está completada ── */}
+        {booking.status === 'completed' && (
+          <ReviewForm
+            bookingId={booking.id}
+            tutorId={booking.tutorId}
+            tutorName={booking.tutorName}
+          />
         )}
 
       </div>

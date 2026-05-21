@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMyBookings, createBooking, type CreateBookingDTO } from '../api/bookings';
+import { getMyBookings, createBooking, type CreateBookingDTO } from '../api/booking';
 import type { Tutor, Booking, ModalityOption } from '../types';
 
 // ─── Helpers ──────────────────────────────────────────────

@@ -3,7 +3,7 @@ import SearchFilters from "../components/SearchFilters";
 import TutorCard from "../components/TutorCard";
 import { getTutors } from "../api/tutor";
 import type { Tutor, TutorFilters } from "../types";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const EMPTY_FILTERS: TutorFilters = {
   search: "",
@@ -45,7 +45,6 @@ function TutorsPage() {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-
     setFilters((previousFilters) => ({
       ...previousFilters,
       [name]: value,
@@ -57,7 +56,10 @@ function TutorsPage() {
   };
 
   const filteredTutors = useMemo(() => {
-    return tutors.filter((tutor) => {
+    const filtered = tutors.filter((tutor) => {
+      // ── REQ 18: ocultar tutores marcados como hidden por el back ──
+      if (tutor.isHidden) return false;
+
       const matchesSearch =
         !filters.search ||
         tutor.name.toLowerCase().includes(filters.search.toLowerCase());
@@ -89,7 +91,20 @@ function TutorsPage() {
         matchesMaxPrice
       );
     });
+
+    // ── REQ 18: tutores penalizados van al final, el resto mantiene orden original ──
+    return filtered.sort((a, b) => {
+      const aPenalty = a.penaltyScore ?? 0;
+      const bPenalty = b.penaltyScore ?? 0;
+      return aPenalty - bPenalty;
+    });
   }, [tutors, filters]);
+
+  // ── REQ 18: cuántos tutores penalizados hay en los resultados actuales ──
+  const penalizedCount = useMemo(
+    () => filteredTutors.filter((t) => (t.penaltyScore ?? 0) > 0).length,
+    [filteredTutors]
+  );
 
   return (
     <main className="tutors-page">
@@ -97,22 +112,20 @@ function TutorsPage() {
         <header className="tutors-page__header">
           <h1 className="tutors-page__title">Busca Tutores</h1>
           <p className="tutors-page__subtitle">
-            Filtra por nombre, materias, calificación, horarios disponibles y rango de
-            precios.
+            Filtra por nombre, materias, calificación, horarios disponibles y
+            rango de precios.
           </p>
         </header>
+
         <div className="flex gap-3 w-full sm:w-auto">
-          {/* Botón del Chat */}
-          <button 
-            onClick={() => navigate('/mensajes')}
+          <button
+            onClick={() => navigate("/mensajes")}
             className="tutor-card__button mb-8"
           >
             💬 Mensajes
           </button>
-
-          {/* Botón del Calendario que ya tenías */}
-          <button 
-            onClick={() => navigate('/calendario')}
+          <button
+            onClick={() => navigate("/calendario")}
             className="tutor-card__button mb-8"
           >
             📅 Mi Calendario
@@ -126,6 +139,18 @@ function TutorsPage() {
           onClear={handleClearFilters}
           totalResults={filteredTutors.length}
         />
+
+        {/* ── REQ 18: aviso si hay tutores penalizados en los resultados ── */}
+        {!isLoading && penalizedCount > 0 && (
+          <div className="mb-4 flex items-start gap-2 rounded-xl border border-orange-500/20 bg-orange-500/5 px-4 py-3">
+            <span className="mt-0.5 text-sm">⚠️</span>
+            <p className="text-xs text-orange-300/80">
+              {penalizedCount === 1
+                ? "1 tutor en estos resultados tiene una alta tasa de cancelación. Aparece al final de la lista."
+                : `${penalizedCount} tutores en estos resultados tienen una alta tasa de cancelación. Aparecen al final de la lista.`}
+            </p>
+          </div>
+        )}
 
         {!isLoading && !errorMessage && tutors.length > 0 && (
           <div className="tutors-list__header">

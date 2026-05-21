@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTutorById } from '../api/tutors';
+import { getTutorById } from '../api/tutor';
 import ReservationForm from '../components/ReservationForm';
 import type { Tutor } from '../types';
 
