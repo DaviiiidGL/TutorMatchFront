@@ -34,7 +34,6 @@ function TutorProfileSetupPage() {
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; msg: string } | null>(null);
 
-  // ─── Campo de texto / número ───
   const handleField = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -43,7 +42,6 @@ function TutorProfileSetupPage() {
     setErrors(prev => ({ ...prev, [name]: "" }));
   };
 
-  // ─── Toggle de materias ───
   const toggleSubject = (subject: SubjectOption) => {
     setFormData(prev => ({
       ...prev,
@@ -54,7 +52,6 @@ function TutorProfileSetupPage() {
     setErrors(prev => ({ ...prev, subjects: "" }));
   };
 
-  // ─── Disponibilidad ───
   const addSlot = () => {
     setFormData(prev => ({
       ...prev,
@@ -80,7 +77,6 @@ function TutorProfileSetupPage() {
     }));
   };
 
-  // ─── Validación ───
   const validate = (): boolean => {
     const newErrors: TutorProfileFormErrors = {};
 
@@ -100,7 +96,6 @@ function TutorProfileSetupPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // ─── Submit ───
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
@@ -188,7 +183,7 @@ function TutorProfileSetupPage() {
           {/* ─── Tarifa y modalidad ─── */}
           <section className="rounded-2xl border border-white/5 bg-[#161616] p-6">
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#ff6a00]">
-              Oferta
+              Oferta base
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
@@ -321,14 +316,37 @@ function TutorProfileSetupPage() {
             )}
           </section>
 
-          {/* ─── Submit ─── */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-xl bg-[#ff6a00] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#e85f00] disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {loading ? "Creando perfil..." : "Crear perfil de tutor"}
-          </button>
+          {/* ─── Acciones ─── */}
+          <div className="space-y-3">
+            {/* Submit principal */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full rounded-xl bg-[#ff6a00] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#e85f00] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {loading ? "Creando perfil..." : "Crear perfil de tutor"}
+            </button>
+
+            {/* Divisor */}
+            <div className="flex items-center gap-3">
+              <span className="h-px flex-1 bg-white/10" />
+              <span className="text-xs text-white/30">o si ya tienes perfil</span>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
+
+            {/* Botón ofertas */}
+            <button
+              type="button"
+              onClick={() => navigate("/tutor/ofertas")}
+              className="flex w-full items-center justify-between rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white/60 transition hover:border-[#ff6a00]/40 hover:bg-white/5 hover:text-white"
+            >
+              <span className="flex items-center gap-2">
+                <span className="text-base">📋</span>
+                Gestionar mis ofertas
+              </span>
+              <span className="text-white/30">→</span>
+            </button>
+          </div>
 
         </form>
       </div>

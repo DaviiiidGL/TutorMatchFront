@@ -2,10 +2,6 @@ export type AuthMode = "login" | "register";
 
 export type UserRole = "student" | "tutor" | "both";
 
-export type SubjectOption = "Mathematics" | "Physics" | "Chemistry" | "Biology"| "Programming"| "Algorithms"| "Databases"| "English"| "History"| "Economics";
-
-export type ModalityOption = "online" | "in-person" | "both";
-
 export interface User {
     id: number;
     name: string;
@@ -64,6 +60,22 @@ export interface TutorFilters {
   maxPrice: string;
 }
 
+// ─── Tutor Profile ───
+
+export type SubjectOption =
+  | "Mathematics"
+  | "Physics"
+  | "Chemistry"
+  | "Biology"
+  | "Programming"
+  | "Algorithms"
+  | "Databases"
+  | "English"
+  | "History"
+  | "Economics";
+
+export type ModalityOption = "online" | "in-person" | "both";
+
 export interface TutorProfileFormData {
   bio: string;
   hourlyRate: number | "";
@@ -77,4 +89,55 @@ export interface TutorProfileFormErrors {
   hourlyRate?: string;
   subjects?: string;
   availabilities?: string;
+}
+
+export interface TutorOffer {
+  id: number;
+  title: string;
+  description: string;
+  subject: SubjectOption;
+  pricePerHour: number;
+  modality: ModalityOption;
+  durationMinutes: number;
+}
+
+export interface TutorOfferFormData {
+  title: string;
+  description: string;
+  subject: SubjectOption | "";
+  pricePerHour: number | "";
+  modality: ModalityOption;
+  durationMinutes: number | "";
+}
+
+export interface TutorOfferFormErrors {
+  title?: string;
+  description?: string;
+  subject?: string;
+  pricePerHour?: string;
+  durationMinutes?: string;
+}
+
+// ─── Bookings / Reservas ───
+
+export type BookingStatus =
+  | "pending"
+  | "accepted"
+  | "rejected"
+  | "expired"
+  | "cancelled";
+
+export interface Booking {
+  id: number;
+  tutorId: number;
+  tutorName: string;
+  studentId: number;
+  studentName: string;
+  subject: string;
+  scheduledAt: string;      
+  durationMinutes: number;
+  modality: ModalityOption;
+  status: BookingStatus;
+  expiresAt: string;       
+  notes?: string;
 }
