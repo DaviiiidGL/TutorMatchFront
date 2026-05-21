@@ -6,6 +6,7 @@ import ReservationPage from './pages/ReservationPage';
 import CalendarPage from './pages/CalendarPage';
 import ChatPage from './pages/ChatPage';
 import TutorProfileSetupPage from './pages/TutorProfileSetupPage';
+import TutorOffersPage from './pages/TutorOffersPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/calendario" element={<CalendarPage />} />
         <Route path="/mensajes" element={<ChatPage />} />
         <Route path="/tutor/setup" element={<TutorProfileSetupPage />} />
+        <Route path="/tutor/ofertas" element={<TutorOffersPage />} />
       </Routes>
     </BrowserRouter>
   );
