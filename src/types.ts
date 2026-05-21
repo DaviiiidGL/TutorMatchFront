@@ -4,7 +4,7 @@ export type UserRole = "student" | "tutor" | "both";
 
 
 export interface User {
-    id: number;
+    id: string;           // IdentityUser.Id en .NET es string (GUID)
     name: string;
     email: string;
     password: string;
@@ -42,7 +42,7 @@ export interface AvailabilitySlot {
 }
 
 export interface Tutor {
-  id: number;
+  id: string;            // TutorId es Guid en el back
   name: string;
   description: string;
   subjects: string[];
@@ -51,10 +51,9 @@ export interface Tutor {
   rating: number;
   reviewCount?: number;       // req 17
   disponibility: AvailabilitySlot[];
-  // ── REQ 18: penalización por cancelaciones ──────────────
-  penaltyScore?: number;      // 0 = sin penalización, >0 = penalizado
-  cancelCount?: number;       // total de cancelaciones para mostrar contexto
-  isHidden?: boolean;         // true = el back lo oculta; el front lo filtra también
+  penaltyScore?: number;      // req 18
+  cancelCount?: number;       // req 18
+  isHidden?: boolean;         // req 18
 }
 
 export interface TutorFilters {
@@ -98,7 +97,7 @@ export interface TutorProfileFormErrors {
 }
 
 export interface TutorOffer {
-  id: number;
+  id: string;            // OfferId es Guid en el back
   title: string;
   description: string;
   subject: SubjectOption;
@@ -132,19 +131,19 @@ export type BookingStatus =
   | 'rejected'
   | 'expired'
   | 'cancelled'
-  | 'completed';  
+  | 'completed';
 
 export interface Booking {
-  id: number;
-  tutorId: number;
+  id: string;           // BookingId es Guid en el back
+  tutorId: string;      // UserId de IdentityUser es string
   tutorName: string;
-  studentId: number;
+  studentId: string;    // UserId de IdentityUser es string
   studentName: string;
   subject: string;
-  scheduledAt: string;      
+  scheduledAt: string;
   durationMinutes: number;
   modality: ModalityOption;
   status: BookingStatus;
-  expiresAt: string;       
+  expiresAt: string;
   notes?: string;
 }

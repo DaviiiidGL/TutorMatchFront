@@ -10,7 +10,6 @@ export async function getAcceptedBookings(): Promise<Booking[]> {
   return api.get<Booking[]>('/bookings/mine?status=accepted');
 }
 
-// Verifica si hay conflicto para un slot concreto antes de enviar
 export async function checkConflict(
   scheduledAt: string,
   durationMinutes: number
@@ -22,12 +21,12 @@ export async function checkConflict(
     if (err instanceof Error && err.message.includes('409')) {
       return { conflict: true, message: err.message };
     }
-    return { conflict: false }; // otros errores no bloquean
+    return { conflict: false };
   }
 }
 
 export interface CreateBookingDTO {
-  tutorId: number;
+  tutorId: string;       // Guid → string
   subject: string;
   modality: ModalityOption;
   scheduledAt: string;   // ISO 8601
@@ -48,10 +47,10 @@ export async function getTutorAcceptedBookings(): Promise<Booking[]> {
   return api.get<Booking[]>('/bookings/accepted');
 }
 
-export async function acceptBooking(id: number): Promise<Booking> {
+export async function acceptBooking(id: string): Promise<Booking> {  // Guid → string
   return api.patch<Booking>(`/bookings/${id}/accept`);
 }
 
-export async function rejectBooking(id: number): Promise<Booking> {
+export async function rejectBooking(id: string): Promise<Booking> {  // Guid → string
   return api.patch<Booking>(`/bookings/${id}/reject`);
 }
